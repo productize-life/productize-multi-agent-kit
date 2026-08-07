@@ -10,8 +10,10 @@ Why a file and not a shared understanding: a fleet's rules live in exactly one p
 in none. The reasoning behind each field is in `docs/fleet-charter.md`; this file is the thing you
 fill in.
 
-> Delete every line marked `<!-- example -->` once you have your own. An example left in the roster
-> is a member that does not exist, and something will eventually try to hand it work.
+> Every row marked *(example row, delete)* is a placeholder. Delete them once you have your own —
+> an example left in the roster is a member that does not exist, and something will eventually try
+> to hand it work. `scripts/roster-reconcile.sh` skips those rows for the same reason, so a
+> half-filled template does not fail every run for the wrong reason.
 
 ---
 
@@ -22,9 +24,9 @@ the finding, not a formatting problem.
 
 | Member | Exists to | Not my lane | Owner |
 |---|---|---|---|
-| `coordinator` <!-- example --> | route incoming work, hold the plan, synthesise results | writing production code itself | @you |
-| `maker` <!-- example --> | implement changes in one named repo | deciding what should be built | @you |
-| `reviewer` <!-- example --> | check work against a written standard before it ships | approving its own findings | @you |
+| `coordinator` *(example row, delete)* | route incoming work, hold the plan, synthesise results | writing production code itself | `<your name or handle>` |
+| `maker` *(example row, delete)* | implement changes in one named repo | deciding what should be built | `<your name or handle>` |
+| `reviewer` *(example row, delete)* | check work against a written standard before it ships | approving its own findings | `<your name or handle>` |
 
 Rules that make the roster real rather than decorative:
 
@@ -43,8 +45,9 @@ Boundaries = can, but which permission tier does it need?**
 
 | Member | Always (act, then report) | Ask first | Never, even if asked |
 |---|---|---|---|
-| `maker` <!-- example --> | commit on its own branch; read anything; write inside its worktree | merge to a shared branch; anything that spends money | rewrite history; touch another member's tree |
-| `reviewer` <!-- example --> | read anything; post findings in its own room | nothing — it has no write path | approve its own findings; grant itself scope |
+| `coordinator` *(example row, delete)* | read anything; file work for other members; report | anything that leaves the fleet: publishing, email, spend | write to any repo itself |
+| `maker` *(example row, delete)* | commit on its own branch; read anything; write inside its worktree | merge to a shared branch; anything that spends money | rewrite history; touch another member's tree |
+| `reviewer` *(example row, delete)* | read anything; post findings in its own room | nothing — it has no write path | approve its own findings; grant itself scope |
 
 - **Read-only is the default** for a new member. Write appears in the "always" column only after
   dispatches have proven the member is worth trusting with it.
@@ -59,7 +62,12 @@ Two lists, never one — the room a member is asked in is not always the room it
 
 | Member | Listens in | Answers in | Never posts to |
 |---|---|---|---|
-| `reviewer` <!-- example --> | its own room | its own room | anywhere a customer can see |
+| `coordinator` *(example row, delete)* | the room humans dispatch in | the same room | any room a member owns |
+| `maker` *(example row, delete)* | its own room | its own room | anywhere a customer can see |
+| `reviewer` *(example row, delete)* | its own room | its own room | anywhere a customer can see |
+
+**Every member needs a row in every table on this page.** A member missing from a table has no
+answer there, and "no answer" gets read as "no limit" by whoever is in a hurry.
 
 A member that answers wherever it was asked will, on some ordinary Tuesday, relay a private thread
 into a public one.
@@ -112,7 +120,9 @@ These are the ones that cost real days when a new member did not inherit them:
 
 | Member | Retires when |
 |---|---|
-| `reviewer` <!-- example --> | the standard it checks is enforced by a test that runs in CI |
+| `coordinator` *(example row, delete)* | routing is answered by the registry and nobody asks it to route |
+| `maker` *(example row, delete)* | the repo it maintains is archived |
+| `reviewer` *(example row, delete)* | the standard it checks is enforced by a test that runs in CI |
 
 ---
 

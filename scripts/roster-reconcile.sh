@@ -37,9 +37,13 @@ FILE="${1:-AGENTS.md}"
 
 # Members are the first backticked cell of each roster row. Rows carrying an example marker are
 # skipped: a template row is not a member, and treating it as one makes every fresh copy fail.
+#
+# The marker is deliberately VISIBLE text, not an HTML comment: a comment disappears in every
+# rendered view of the file, so the person filling the template is told to delete rows they cannot
+# see. Keep this pattern and the template's marker in step — they are one contract in two files.
 parse_roster() {
   grep -E '^\|\s*`[a-z0-9][a-z0-9_-]*`' "$1" \
-    | grep -v '<!-- example -->' \
+    | grep -vi 'example row, delete' \
     | sed -E 's/^\|[[:space:]]*`([^`]+)`.*/\1/' \
     | sort -u
 }
@@ -58,6 +62,12 @@ if [ "$SELF_TEST" = 1 ]; then
   # And the fail-closed arm: an empty roster command must be exit 3, never a clean pass.
   ROSTER_CMD="true" "$0" "$tmp/AGENTS.md" >/dev/null 2>&1
   [ $? = 3 ] || ok=0
+  # And the marker arm: the template's own example rows must NOT be read as members. This is one
+  # contract spread over two files (the marker text lives in AGENTS.md), so it is worth a test —
+  # change the marker in one place only and every fresh copy of the template fails for a fake reason.
+  printf '| Member |\n|---|\n| `sample` *(example row, delete)* |\n| `real-one` |\n' > "$tmp/marker.md"
+  out2=$(ROSTER_CMD="printf 'real-one\\n'" "$0" "$tmp/marker.md"); rc2=$?
+  { [ "$rc2" = 0 ] && ! grep -q 'sample' <<<"$out2"; } || ok=0
   if [ "$ok" = 1 ]; then echo "self-test: PASS (both directions reported, empty input refused)"; exit 0
   else echo "self-test: FAIL — this checker cannot be trusted"; exit 1; fi
 fi
