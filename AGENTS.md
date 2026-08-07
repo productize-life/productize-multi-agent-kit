@@ -10,7 +10,8 @@ Why a file and not a shared understanding: a fleet's rules live in exactly one p
 in none. The reasoning behind each field is in `docs/fleet-charter.md`; this file is the thing you
 fill in.
 
-> Every row marked *(example row, delete)* is a placeholder. Delete them once you have your own —
+> Every row marked *(example row, delete)* is a placeholder, in **every table on this page**, not
+> just the first one. Delete them once you have your own —
 > an example left in the roster is a member that does not exist, and something will eventually try
 > to hand it work. `scripts/roster-reconcile.sh` skips those rows for the same reason, so a
 > half-filled template does not fail every run for the wrong reason.
@@ -126,5 +127,5 @@ These are the ones that cost real days when a new member did not inherit them:
 
 ---
 
-*Template from [multi-agent-kit]. Once filled in, this file outranks anything a member says about
-itself — including this sentence.*
+*Template from [multi-agent-kit](https://github.com/productize-life/productize-multi-agent-kit).
+Once filled in, this file outranks anything a member says about itself — including this sentence.*
