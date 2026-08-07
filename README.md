@@ -26,9 +26,11 @@ one runnable client. See `docs/README.md` for the full table and reading order.
 
 | | |
 |---|---|
-| `docs/adding-an-agent.md` | onboarding one, end to end: purpose, charter, credentials, the scope defaults that are wrong out of the box, drills, and the retirement condition you can only write early |
+| `AGENTS.md` | **the template you fill in** — the roster, each member's scope and rooms, how work travels, who decides what, and the retirement condition. Lives at the root because that is where agent runtimes look |
+| `docs/fleet-charter.md` | why each field in that template exists, what must never go in it, and the three checks that make a charter binding instead of decorative |
+| `docs/adding-an-agent.md` | onboarding one, end to end: purpose, credentials, the scope defaults that are wrong out of the box, drills, and the retirement condition you can only write early |
 | `docs/agent-dispatch.md` | how work reaches a busy agent and how the answer gets matched back to the right request |
-| `docs/fleet-charter.md`, `skill-registry.md`, `working-agreement.md`, `fleet-health.md` | planned — charter enforcement, who-covers-what, decision tiers and briefs, and health you can trust |
+| `skill-registry.md`, `working-agreement.md`, `fleet-health.md` | planned — who-covers-what, decision tiers and briefs, and health you can trust |
 | `scripts/dispatch-client.sh` | a reference sender: matches the answer to the request by id, honours a queue acknowledgement instead of reposting, and fails loudly rather than accepting the wrong answer |
 
 This is not a framework and there is no runtime to install — the agent side of all of it is short

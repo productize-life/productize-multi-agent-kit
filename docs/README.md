@@ -9,7 +9,7 @@ asking every member to self-report.
 
 | Chapter | Read it when | State |
 |---|---|---|
-| `fleet-charter.md` | before the second agent exists — what a charter declares, what it must never contain, and how it gets enforced at runtime instead of admired in a file | planned |
+| `fleet-charter.md` | before the second agent exists — what a charter declares, what it must never contain, and how it gets enforced at runtime instead of admired in a file. Fill in `../AGENTS.md` as you read it | **written** |
 | `adding-an-agent.md` | every time you add one — the onboarding path end to end, the settings that silently default wrong, and the drills that prove the new member is real | **written** |
 | `agent-dispatch.md` | the day a request arrives while an agent is busy — queueing instead of dropping, who may trigger write scope, and why an answer must be matched to its request by id and never by time | **written** |
 | `skill-registry.md` | when nobody can say which agent or skill covers which job — a registry that outranks self-claims, and the guard that keeps it from going stale | planned |
