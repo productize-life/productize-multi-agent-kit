@@ -58,6 +58,25 @@ Three layers, and only one of them is portable:
 Every warning in `docs/` is there because it cost real days of someone's work. The examples are
 generalised; the scars are not.
 
+## Where this sits, and what it is not
+
+This kit is the **contract** layer. Two other layers already exist in public and this one does not
+replace either:
+
+| | |
+|---|---|
+| **Tooling** — [`maw-js`](https://github.com/Soul-Brews-Studio/maw-js) and its Rust successor [`maw-rs`](https://github.com/Soul-Brews-Studio/maw-rs) | drives many agents across tmux panes, git worktrees, and machines: wake one, talk to it, watch it, track cost. If you need the mechanism rather than the agreement, start there. |
+| **Field guide** — [multi-agent-orchestration-book](https://github.com/Soul-Brews-Studio/multi-agent-orchestration-book) | patterns from subagents through federation, written while building the tooling above. Broader and earlier than this kit. |
+| **This kit** | the agreements that hold once several agents are running: who may trigger write scope, what a busy agent owes a sender, how an answer is matched to its request. Transport-agnostic and tool-agnostic on purpose. |
+
+Two implementation traps worth knowing before you pick tooling, because both cost real time:
+
+- **Two implementations exist** (`maw-js`, `maw-rs`) and they move independently. Pin the one you
+  installed, and check which one a given instruction was written for before following it.
+- **A green test suite is not a working client.** A rewrite can pass every check it ships with and
+  still fail the caller that matters, because the caller exercises a path the suite does not. Run
+  the real client against the new version once before switching anything that runs unattended.
+
 ## Credit
 
 The practice this grew out of — running a fleet of agents as one team, tiered roles, dispatch
