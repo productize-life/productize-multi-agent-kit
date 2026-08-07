@@ -9,8 +9,12 @@ Everything here is a contract, not code. The code is thirty lines in whatever ru
 the contract is the part that takes months to learn, because every failure in it looks like
 success from the outside.
 
-Read `discord-event-bus.md` first if you have not built the transport yet. This picks up where the
-inbound relay lands: a message arrived, and now something has to decide what happens to it.
+This assumes you already have a transport — a chat room with a bot in it, a queue, a shared
+directory, anything that can carry a request to an agent and an answer back. Build the outbound
+half first (agent tells you things) and confirm delivery before you build the inbound half (you
+give the agent work); the outbound half is most of the value and a fraction of the work. What
+follows picks up where an inbound message lands: it arrived, and now something has to decide what
+happens to it.
 
 ---
 

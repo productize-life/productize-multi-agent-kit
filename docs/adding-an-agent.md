@@ -139,7 +139,7 @@ If members can hand work to each other, the new one has to be discoverable. Two 
 second scales:
 
 - tell each existing member, once — fine for three members, hopeless at nine
-- put it in the registry every member consults (`skill-registry.md`) and let the answer to "who
+- put it in the registry every member consults (`skill-registry.md`, planned) and let the answer to "who
   covers this?" come from one place
 
 Whichever you pick: **a member's own claim about what it covers is not authoritative.** Members
