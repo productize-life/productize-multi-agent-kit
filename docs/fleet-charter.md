@@ -40,6 +40,33 @@ no obvious home. Six weeks later it is the only member with real context, everyt
 it, and you have rebuilt the bottleneck you added agents to remove. Naming the wrong job is what
 lets a router say "not this one" without asking a human.
 
+### Proven, not aspirational
+
+List what dispatches have actually shown a member can do. The temptation is to write the job
+description you had in mind when you created it, and the cost lands on whoever routes work by
+reading this file: real work goes to a member that has never once done the thing.
+
+The honest version is boring and useful — a capability enters the list the first time a dispatch
+proves it, and leaves when it stops being true.
+
+### Not my lane, and boundaries — two different questions
+
+These get merged into one "scope" column and the merge is the mistake:
+
+- **Not my lane** — the member will not do this at all. It is the wrong member. This is what lets a
+  router reject a request without asking a human.
+- **Boundaries** — the member *can* do this; the question is what permission tier it needs. Three
+  tiers is enough: act-then-report, ask first, never even if asked.
+
+A member with boundaries but no lane statement will accept anything and queue it. A member with a
+lane statement but no boundaries has one bit of permission for a spectrum of actions, and that bit
+is always set wrong for something.
+
+The axis that decides the tier is **reversibility**, not importance. Cheap to undo and inside work
+already agreed → act and report. Someone else sees it, money moves, data leaves, or you cannot take
+it back → ask first. That is also the honest answer to "which tier is this?" when nothing in the
+table matches: ask what happens if it is wrong.
+
 ### Owner
 
 One human per member. Not a team, not "the fleet". Shared ownership means an agent that misbehaves

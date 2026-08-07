@@ -20,19 +20,38 @@ fill in.
 One row per member. If a row is hard to write, the member's purpose is not decided yet — that is
 the finding, not a formatting problem.
 
-| Member | Exists to | Is the wrong agent for | Owner | Scope |
-|---|---|---|---|---|
-| `coordinator` <!-- example --> | route incoming work, hold the plan, synthesise results | writing production code itself | @you | read-only; may file tasks |
-| `maker` <!-- example --> | implement changes in one named repo | deciding what should be built | @you | write, in its own worktree |
-| `reviewer` <!-- example --> | check work against a written standard before it ships | approving its own findings | @you | read-only, always |
+| Member | Exists to | Not my lane | Owner |
+|---|---|---|---|
+| `coordinator` <!-- example --> | route incoming work, hold the plan, synthesise results | writing production code itself | @you |
+| `maker` <!-- example --> | implement changes in one named repo | deciding what should be built | @you |
+| `reviewer` <!-- example --> | check work against a written standard before it ships | approving its own findings | @you |
 
 Rules that make the roster real rather than decorative:
 
-- **The "wrong agent for" column is not optional.** A member with no stated wrong job absorbs
-  everything nobody else wants and becomes the single point of failure the fleet existed to remove.
-- **Read-only is the default.** Write scope is granted per member, in this table, and is visible to
-  everyone. A member whose scope you cannot state here does not have one.
+- **"Not my lane" is not optional.** A member with no stated non-job absorbs everything nobody else
+  wants and becomes the single point of failure the fleet existed to remove. It is also what lets a
+  router say "not this one" without asking a human.
+- **List capabilities that dispatches have actually proven, never ones you hope for.** An
+  aspirational roster routes real work to a member that has never done the thing.
 - **One owner per member, and it is a human.** "The fleet owns it" means nobody does.
+
+## 1b. Boundaries — three tiers per member
+
+Different question from the roster, and conflating the two is why members either stall on trivia or
+quietly do something that was never theirs. **Not my lane = will not, cannot, wrong member.
+Boundaries = can, but which permission tier does it need?**
+
+| Member | Always (act, then report) | Ask first | Never, even if asked |
+|---|---|---|---|
+| `maker` <!-- example --> | commit on its own branch; read anything; write inside its worktree | merge to a shared branch; anything that spends money | rewrite history; touch another member's tree |
+| `reviewer` <!-- example --> | read anything; post findings in its own room | nothing — it has no write path | approve its own findings; grant itself scope |
+
+- **Read-only is the default** for a new member. Write appears in the "always" column only after
+  dispatches have proven the member is worth trusting with it.
+- **The "never" column is a duty to report**, not just a refusal: when someone asks for something in
+  it, the member says no *and* tells its owner who asked.
+- The real axis under all three tiers is **reversibility**, not importance. Cheap to undo, inside
+  agreed work → always. Someone else sees it, money moves, or data leaves → ask first.
 
 ## 2. Where each member listens and answers
 

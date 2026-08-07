@@ -26,11 +26,13 @@ one runnable client. See `docs/README.md` for the full table and reading order.
 
 | | |
 |---|---|
-| `AGENTS.md` | **the template you fill in** — the roster, each member's scope and rooms, how work travels, who decides what, and the retirement condition. Lives at the root because that is where agent runtimes look |
+| `AGENTS.md` | **the template you fill in** — the roster, each member's lane and boundaries, rooms in and out, how work travels, who decides what, and the retirement condition. Lives at the root because that is where agent runtimes look |
 | `docs/fleet-charter.md` | why each field in that template exists, what must never go in it, and the three checks that make a charter binding instead of decorative |
 | `docs/adding-an-agent.md` | onboarding one, end to end: purpose, credentials, the scope defaults that are wrong out of the box, drills, and the retirement condition you can only write early |
 | `docs/agent-dispatch.md` | how work reaches a busy agent and how the answer gets matched back to the right request |
-| `skill-registry.md`, `working-agreement.md`, `fleet-health.md` | planned — who-covers-what, decision tiers and briefs, and health you can trust |
+| `docs/working-agreement.md` + `templates/brief.md` | describing work for someone who was not in the conversation: MUST vs HINT, runnable acceptance, and what must come back |
+| `docs/skill-registry.md` + `scripts/registry-lint.sh` | answering "who covers this?" from a file that outranks self-report — and proving every capability it claims can still be loaded |
+| `docs/fleet-health.md` + `scripts/roster-reconcile.sh` | health you can trust: enumerate from the system, reconcile both directions, and make every check go red once |
 | `scripts/dispatch-client.sh` | a reference sender: matches the answer to the request by id, honours a queue acknowledgement instead of reposting, and fails loudly rather than accepting the wrong answer |
 
 This is not a framework and there is no runtime to install — the agent side of all of it is short
