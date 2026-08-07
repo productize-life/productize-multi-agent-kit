@@ -17,7 +17,9 @@ one, or you want two people to be able to send work to the same one. Nothing her
 particular framework — the contracts are transport-agnostic, and the example transport is a chat
 room because that is what most people already have.
 
-If you do not have agents yet, start with a pattern layer first. This kit picks up after that.
+If you do not have agents running yet, start with the patterns for building them — the
+[field guide](https://github.com/Soul-Brews-Studio/multi-agent-orchestration-book) below covers
+that ground. This kit picks up after you have something running.
 
 ## What is in it
 
@@ -30,9 +32,9 @@ one runnable client. See `docs/README.md` for the full table and reading order.
 | `docs/fleet-charter.md` | why each field in that template exists, what must never go in it, and the three checks that make a charter binding instead of decorative |
 | `docs/adding-an-agent.md` | onboarding one, end to end: purpose, credentials, the scope defaults that are wrong out of the box, drills, and the retirement condition you can only write early |
 | `docs/agent-dispatch.md` | how work reaches a busy agent and how the answer gets matched back to the right request |
-| `docs/working-agreement.md` + `templates/brief.md` | describing work for someone who was not in the conversation: MUST vs HINT, runnable acceptance, and what must come back |
+| `docs/working-agreement.md` + `templates/brief.md` | describing work for someone who was not in the conversation: MUST vs HINT (what the doer may be failed for, versus advice it may discard), runnable acceptance, and what must come back |
 | `docs/skill-registry.md` + `scripts/registry-lint.sh` | answering "who covers this?" from a file that outranks self-report — and proving every capability it claims can still be loaded |
-| `docs/fleet-health.md` + `scripts/roster-reconcile.sh` | health you can trust: enumerate from the system, reconcile both directions, and make every check go red once |
+| `docs/fleet-health.md` + `scripts/roster-reconcile.sh` | health you can trust: enumerate from the system, reconcile both directions, and make every check go red once on purpose before trusting its green |
 | `scripts/dispatch-client.sh` | a reference sender: matches the answer to the request by id, honours a queue acknowledgement instead of reposting, and fails loudly rather than accepting the wrong answer |
 
 This is not a framework and there is no runtime to install — the agent side of all of it is short
