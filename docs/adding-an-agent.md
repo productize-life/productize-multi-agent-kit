@@ -5,6 +5,9 @@ full of decisions that were never written down because there was nobody to disag
 This chapter is the path that survives, plus the settings that default wrong in a way you will not
 notice for weeks.
 
+Throughout: *agent*, *member*, and *teammate* all mean the same thing, a non-human participant in
+the fleet. Nothing here refers to a human colleague.
+
 The order matters. Every step here exists because doing it later cost someone a day.
 
 ---
@@ -162,7 +165,7 @@ holding valid credentials, answering in a room somebody still watches.
 
 ```
 [ ] purpose sentence, including the wrong job
-[ ] charter file, with rooms-in / rooms-out and a retirement condition
+[ ] charter file, with the rooms it listens in, the rooms it answers in, and a retirement condition
 [ ] runtime loads the charter and logs what it loaded
 [ ] own credentials, on one host, never in the repo
 [ ] read-only scope; guardian behaviour explicitly off unless this is the guardian
