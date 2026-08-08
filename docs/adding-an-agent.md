@@ -6,7 +6,8 @@ This chapter is the path that survives, plus the settings that default wrong in 
 notice for weeks.
 
 Throughout: *agent*, *member*, and *teammate* all mean the same thing, a non-human participant in
-the fleet. Nothing here refers to a human colleague.
+the fleet. Nothing here refers to a human colleague. *The fleet* is the set of agents you have
+added — the roster in `../AGENTS.md` plus whatever is actually running (see `README.md`).
 
 The order matters. Every step here exists because doing it later cost someone a day.
 
@@ -29,8 +30,10 @@ existing one.
 
 ## 1. Charter before credentials
 
-The charter is a file the runtime reads at startup, not a description you write afterwards. It
-declares, at minimum:
+The charter is a file the runtime reads at startup, not a description you write afterwards. *The
+runtime* here means whatever actually boots the agent and holds its configuration — a systemd unit,
+a container entrypoint, a supervisor process. The kit does not ship one; it assumes you have one.
+The charter declares, at minimum:
 
 ```
 name / display name       what it is called when it speaks
@@ -129,6 +132,9 @@ Two checks, and the second is the one people skip:
   over a hardcoded array of names will show all-green while a member that is not in the array has
   been dead for a week. Ask the process supervisor, the orchestrator, the directory — whatever
   actually owns the set — and have the fallback list be the *emergency* path, not the normal one.
+  The kit does not pick one for you: `../scripts/roster-reconcile.sh` takes the enumerator as
+  `ROSTER_CMD`, and ships worked examples for systemd, tmux and docker. Whichever you pass in is the
+  answer for your fleet; the point is that it comes from the running system, not from a file.
 
 The failure this prevents is specific and common: the fleet grows from six members to nine, the
 status line still reports on six, and it looks complete because six checkmarks is what a healthy
@@ -142,8 +148,8 @@ If members can hand work to each other, the new one has to be discoverable. Two 
 second scales:
 
 - tell each existing member, once — fine for three members, hopeless at nine
-- put it in the registry every member consults (`skill-registry.md`, planned) and let the answer to "who
-  covers this?" come from one place
+- put it in the registry every member consults (`skill-registry.md`, with `../scripts/registry-lint.sh`
+  to keep it honest) and let the answer to "who covers this?" come from one place
 
 Whichever you pick: **a member's own claim about what it covers is not authoritative.** Members
 overstate, in perfect good faith, exactly the way people do.
