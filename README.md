@@ -49,6 +49,12 @@ work another agent relayed. And when the answer comes back, match it to your req
 put in the artifact — never by "the next message after mine", because on a busy day that message
 is someone else's verdict about someone else's file, and it will read exactly like yours.
 
+None of that is new as theory. The id is a **correlation id**, "do not resend" is asking the queue
+for an **idempotency key** instead of a retry, and "starting in about N minutes" is a **lease** with
+a visibility timeout stated in words. Message brokers solved all three decades ago. The reason this
+kit exists is that your transport is a chat room and there is no broker in it, so the guarantees
+have to live in the etiquette between the two ends.
+
 ## Boundary
 
 Three layers, and only one of them is portable:
@@ -80,6 +86,33 @@ Two implementation traps worth knowing before you pick tooling, because both cos
 - **A green test suite is not a working client.** A rewrite can pass every check it ships with and
   still fail the caller that matters, because the caller exercises a path the suite does not. Run
   the real client against the new version once before switching anything that runs unattended.
+
+## One incident, concretely
+
+If you have not been burned yet, the warnings above read as reasonable advice rather than rules.
+Here is the shape of the day that turns one into the other.
+
+A sender posts a file for review and waits for the verdict. The reviewer is busy, so it replies
+with a short acknowledgement, then goes quiet. Twelve minutes later a long, detailed verdict
+appears in the room. The sender takes it, applies the fixes, and ships.
+
+The verdict was about a different file. A second sender had queued work a minute earlier, and the
+reviewer answered that one first. Both messages are long, both are in the same room, both begin the
+same way. Nothing errored. The sender's own tooling reported success, because its rule was *the
+next long message after mine*.
+
+The fix is two lines of etiquette, and they are the whole kit in miniature: put an id in the
+artifact and require the verdict to carry it back, and treat an acknowledgement as a queue position
+rather than a result. What made the incident expensive was not the missing id, it was that the
+failure looked exactly like success from the inside.
+
+## Known gap
+
+`AGENTS.md` is the file everything else points at, and it is the least defended thing here. Two
+chapters ship a checker that re-derives reality from the running system (`registry-lint.sh`,
+`roster-reconcile.sh`); the roster in `AGENTS.md` has no equivalent. It is hand-maintained prose,
+and when it drifts out of step with the agents actually running, nothing in this kit will notice.
+Treat it as a file to re-read on a schedule until someone writes that check.
 
 ## Credit
 
