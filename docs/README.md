@@ -10,13 +10,17 @@ asking every member to self-report.
 Throughout these chapters, **the fleet** means the set of agents you have added — the roster in
 `../AGENTS.md` plus whatever is actually running.
 
+Every shell block in these chapters is written to run **from the repository root**, which is why
+they say `./scripts/…` while the surrounding prose points at `../scripts/…` (relative to this
+`docs/` directory). Copy the block, not the sentence.
+
 | Chapter | Read it when | State |
 |---|---|---|
 | `fleet-charter.md` | before the second agent exists — what a charter declares, what it must never contain, and how it gets enforced at runtime instead of admired in a file. Fill in `../AGENTS.md` as you read it | **written** |
 | `adding-an-agent.md` | every time you add one — the onboarding path end to end, the settings that silently default wrong, and the drills that prove the new member is real | **written** |
 | `agent-dispatch.md` | the day a request arrives while an agent is busy — queueing instead of dropping, who may trigger write scope (permission to change files, not merely read them), and why an answer must be matched to its request by id and never by time | **written** |
 | `skill-registry.md` | when nobody can say which agent or skill covers which job — a registry that outranks self-claims, plus `../scripts/registry-lint.sh` to keep it from rotting | **written** |
-| `working-agreement.md` | when work has to be described for someone who was not in the conversation — MUST vs HINT (how binding each line of a brief is: obey it, or drop it with a reason), runnable acceptance (a command plus the output you expect back, not a description of success), and what must come back. Template: `../templates/brief.md` | **written** |
+| `working-agreement.md` | when work has to be described for someone who was not in the conversation — MUST vs HINT (MUST is binding, HINT is advice you may drop with a reason), runnable acceptance (a command plus the output you expect back, not a description of success), and what must come back. Template: `../templates/brief.md` | **written** |
 | `fleet-health.md` | once the fleet runs unattended — enumerate members from the system, reconcile both directions with `../scripts/roster-reconcile.sh`, and alarms that prove delivery instead of assuming silence | **written** |
 
 ## Why prose and not a framework
@@ -35,6 +39,10 @@ these is somewhere the failure is silent:
 | `../scripts/dispatch-client.sh` | the sender side: matches an answer to its request by id, waits instead of reposting |
 | `../scripts/roster-reconcile.sh` | running members and the roster agree, in both directions. `--self-test` makes it go red |
 | `../scripts/registry-lint.sh` | every capability the registry claims can actually be loaded here. `--self-test` plants a decoy and catches it |
+
+Two of them need a file you fill in first, and the kit ships both starting points:
+`../templates/brief.md` for a dispatch, `../templates/REGISTRY.md` for the registry the linter
+checks. A chapter whose runnable half has no file to run against is prose with a shell block in it.
 
 The two `--self-test` flags are not decoration. A check nobody has watched fail is an assumption
 wearing a checkmark.

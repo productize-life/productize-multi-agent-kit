@@ -1,7 +1,8 @@
 # Health you can trust
 
-A fleet that runs unattended fails in one direction: **quietly**. Not with an outage — with a
-member that stopped answering, a checker that stopped checking, and a dashboard that keeps showing
+A fleet — the set of agents you have added, the roster in `../AGENTS.md` plus whatever is actually
+running — fails in one direction once it runs unattended: **quietly**. Not with an outage, but with
+a member that stopped answering, a checker that stopped checking, and a dashboard that keeps showing
 the same reassuring shape it showed last week.
 
 Everything in this chapter answers one question about every check you own:

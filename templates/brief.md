@@ -1,8 +1,9 @@
 # Brief — <one line: what changes in the world>
 
 <!-- Copy this file per dispatch. Two sections, and the split is the whole point:
-     MUST is refusable. HINT is advice. A doer that satisfies every MUST has done the job, even if
-     it ignored every HINT — and a reviewer may not bounce it for that. See docs/working-agreement.md -->
+     MUST is binding — you may refuse the finished work if one is unmet. HINT is advice.
+     A doer that satisfies every MUST has done the job, even if it ignored every HINT — and a
+     reviewer may not bounce it for that. See docs/working-agreement.md -->
 
 ## MUST
 

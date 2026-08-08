@@ -8,7 +8,9 @@ The registry is the file that answers "who or what covers this job?" — and it 
 same way a status code is a claim: produced in good faith, and describing intent rather than
 reality.
 
-The runnable half of this chapter is `../scripts/registry-lint.sh`.
+The runnable half of this chapter is `../scripts/registry-lint.sh`, and the file it checks starts
+from `../templates/REGISTRY.md` — copy that to your repo root as `REGISTRY.md` before the commands
+below will do anything.
 
 ---
 
@@ -45,8 +47,13 @@ rename, a disabled plugin, a moved path, an install that only ever happened on t
 breaks a promise without producing an error anywhere.
 
 ```bash
+# from the repo root, against your own REGISTRY.md (start from templates/REGISTRY.md)
 ./scripts/registry-lint.sh REGISTRY.md
-RESOLVER_CMD='my-runtime has-skill' ./scripts/registry-lint.sh REGISTRY.md
+
+# RESOLVER_CMD is YOUR command, whatever answers "can this host load <plugin:skill>?".
+# It receives the reference as $1 and must exit 0 when the capability is loadable.
+RESOLVER_CMD='<your-runtime> has-skill' ./scripts/registry-lint.sh REGISTRY.md
+
 ./scripts/registry-lint.sh --self-test    # plants a decoy, proves the decoy landed, catches it
 ```
 
@@ -81,7 +88,8 @@ everything fine, depending on the comparison) with total confidence.
 The same registry checked on two machines will legitimately give different answers, because
 capabilities are installed per host. That is not noise to be averaged away:
 
-- Keep the **baseline per host**, and keep it out of version control. A shared baseline turns one
+- Keep the **baseline per host** — the last accepted result of the lint on that machine, the thing
+  a new run is compared against — and keep it out of version control. A shared baseline turns one
   machine's missing install into everybody's failure.
 - **Run the lint on every host that dispatches work**, not only on the one you develop on. The
   machine your unattended agents run on is the one whose answer matters, and it is the one nobody

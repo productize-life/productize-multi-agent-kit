@@ -12,8 +12,10 @@ The runnable half is `../templates/brief.md`.
 
 Every instruction you give a member is one of two things, and merging them costs you both:
 
-- **MUST** — refusable. The doer's work is judged against these and nothing else.
-- **HINT** — advisory. Your best guess about approach, worth saying, wrong sometimes.
+- **MUST** — binding. You may refuse the finished work if any of these is unmet, and the doer's
+  work is judged against these and nothing else.
+- **HINT** — advisory. Your best guess about approach, worth saying, wrong sometimes. Dropping one
+  is never grounds for refusing the work.
 
 Why the separation earns its ceremony: a brief that is one undifferentiated wall of instructions
 turns every suggestion into a requirement. The doer follows your hunch past the point where the
