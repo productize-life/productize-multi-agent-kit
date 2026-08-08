@@ -22,7 +22,8 @@ statement:
    rules nobody can quote. `AGENTS.md` at the repo root, because that is where agent runtimes
    already look.
 2. **Loaded at runtime.** A charter no code reads is decoration. Load it at startup, log what was
-   loaded in the first lines of the log, and let the health check assert those values — see §4.
+   loaded in the first lines of the log, and let the health check assert those values — see
+   *Enforcement* at the end of this chapter.
 3. **Outranks self-report.** When a member's behaviour and the charter disagree, the charter is
    right and the member is a bug. This ordering has to be explicit, because a confident member is
    very persuasive about its own capabilities.
@@ -38,13 +39,17 @@ Every member gets one sentence: *exists to X, is the wrong agent for Y.*
 The second clause is load-bearing. Without it, a capable member accumulates every request that has
 no obvious home. Six weeks later it is the only member with real context, everything routes through
 it, and you have rebuilt the bottleneck you added agents to remove. Naming the wrong job is what
-lets a router say "not this one" without asking a human.
+lets a router (whatever decides where work goes, whether that is a person, a script, or a member
+whose job is triage) say "not this one" without asking a human.
 
 ### Proven, not aspirational
 
-List what dispatches have actually shown a member can do. The temptation is to write the job
-description you had in mind when you created it, and the cost lands on whoever routes work by
-reading this file: real work goes to a member that has never once done the thing.
+List what dispatches have actually shown a member can do. A **dispatch** here means one real
+request handed to a member and carried through to an answer, not a message and not an experiment.
+
+The temptation is to write the job description you had in mind when you created it, and the cost
+lands on whoever routes work by reading this file: real work goes to a member that has never once
+done the thing.
 
 The honest version is boring and useful — a capability enters the list the first time a dispatch
 proves it, and leaves when it stops being true.
@@ -86,9 +91,17 @@ Two rules that carry most of the value:
   approval path is a write path with extra steps, and it will be discovered by the first relayed
   message that contains the word "deploy".
 
+What actually goes in the field: for each member, one line per tier — what it may do without
+asking, what it must ask for first, and what it refuses even when asked. Write actions, not
+adjectives: "commit on its own branch" and "merge to a shared branch" can be checked; "limited
+write access" cannot.
+
 ### Rooms: listens vs answers
 
-Two lists. The default that feels natural — answer wherever you were asked — is how a private
+Three lists, not two: where it listens, where it answers, and where it must never post. The
+third is the one people leave blank, and blank reads as "no limit".
+
+The default that feels natural — answer wherever you were asked — is how a private
 thread ends up summarised into a public room by a member doing exactly what it was told.
 
 Write the destination explicitly, including the "never posts to" column for anywhere a customer,

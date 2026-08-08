@@ -59,7 +59,9 @@ Boundaries = can, but which permission tier does it need?**
 
 ## 2. Where each member listens and answers
 
-Two lists, never one — the room a member is asked in is not always the room it may answer in.
+Three lists, never one: where it listens, where it answers, and where it must never post. The room
+a member is asked in is not always the room it may answer in, and the third list is the one people
+leave blank — where blank gets read as "no limit".
 
 | Member | Listens in | Answers in | Never posts to |
 |---|---|---|---|
