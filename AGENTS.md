@@ -20,6 +20,17 @@ fill in.
 
 ## 1. Roster
 
+`roster-last-verified: <YYYY-MM-DD>`
+
+<!-- ⛔ วันที่บรรทัดบนคือวันที่มีคนรัน scripts/roster-reconcile.sh แล้วอ่านผลด้วยตา
+     ไม่ใช่วันที่แก้ไฟล์นี้ล่าสุด · ตารางที่ไม่มีวันกำกับอ่านเหมือนจริงตลอดกาล
+     ซึ่งเป็นเหตุผลเดียวกับที่ fleet-health.md บอกให้อ่าน "อายุ" ของไฟล์สถานะก่อน "เนื้อ" -->
+
+Put a date on it. A roster with no verification date reads as current forever, and the failure this
+whole chapter is about — the member that quietly stopped existing — is exactly the one a stale
+roster hides. `scripts/roster-reconcile.sh` is what makes the date mean something; the date is what
+tells the next reader whether anybody has run it this quarter.
+
 One row per member. If a row is hard to write, the member's purpose is not decided yet — that is
 the finding, not a formatting problem.
 

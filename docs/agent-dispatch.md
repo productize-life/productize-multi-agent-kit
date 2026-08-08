@@ -119,6 +119,29 @@ Which means the agent's ack wording is now a **wire format**. Write it once, kee
 if you change it, change every client that reads it. An ack that a client cannot parse is an ack
 that produces duplicate work.
 
+### The wait has to end somewhere, and the end must not be a resend
+
+"Wait, do not repost" without a bound is a client that hangs until somebody notices. So state a
+**lease**: how long you will wait before the request is considered abandoned. The reference client
+uses `MAX_POLLS × POLL_SECONDS` and it is deliberately a plain number you can read off the command.
+
+What happens at the end of the lease is the part that decides whether the contract is safe:
+
+```
+lease expires  →  surface it to a human, exit non-zero
+lease expires  →  resend automatically              ⛔ never
+```
+
+⛔ **The dead-letter action is "tell a human", not "try again".** The correlation id is a routing
+token, not an authenticator (see the threat model in `../README.md`): it is guessable, and matching
+is by substring. A resend path on top of that is a forgery window — the duplicate is
+indistinguishable from the original, and whichever answer lands first is the one your client
+accepts. The reference client therefore ends with `exit 2` and the line *"go read the room before
+assuming anything: an answer may exist that is not yours"*.
+
+That is also why §5's "repost after the stated interval" branch is narrow on purpose: it applies
+only when the agent explicitly said it did **not** take the work.
+
 ---
 
 ## 6. Pair the answer to the request. Never by time.

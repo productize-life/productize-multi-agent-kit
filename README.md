@@ -10,6 +10,36 @@ an error. All of it looks like success.
 This kit is the seam between agents: the contracts that keep dispatch honest, plus a reference
 client that implements them.
 
+**It is a bridge, not a destination.** If you control the transport and a real queue is available to
+you, use the queue: leases, acks and dead-letters are better solved there than in prose two agents
+agree to honour. This kit is for the very common case where the transport is a chat product you do
+not own, and the guarantee has to live in the contract instead.
+
+## If you only do one thing
+
+Give every request an id, make the agent echo it back, and accept an answer only if it carries
+your id. That single rule removes the failure that costs the most: reading somebody else's answer
+as your own. Everything else here is what you need once the second sender, the retry, and the
+unattended night arrive.
+
+## Threat model — read before trusting the id
+
+**This assumes a room where every participant is trusted.** The correlation id is a *routing token,
+not an authenticator*: `scripts/dispatch-client.sh` mints `job-<timestamp>-<pid>` and accepts any
+message containing that string. It is guessable, and matching is by substring. That is a deliberate
+trade — it makes the contract implementable over any transport — and it is only safe while everyone
+who can post in the room is somebody you would let run the job.
+
+Two consequences that follow directly, and are load-bearing:
+
+- **Never auto-resend on timeout.** A resend path plus a guessable id is a forgery window: the
+  duplicate is indistinguishable from the original, and whoever answers first wins. The client
+  deliberately exits non-zero and tells a human to go read the room (`exit 2`) instead.
+- **"Write scope belongs to work a human triggered" is unenforceable without this boundary.** If
+  attacker-controlled content can reach an agent that can post, the id proves nothing and the write
+  rule is a wish. Decide which world you are in and write it down; the contracts below assume the
+  trusted one.
+
 ## Who this is for
 
 You already run one Claude Code agent (or any agent runtime) and it works. Now you want a second
