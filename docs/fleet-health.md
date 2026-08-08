@@ -12,7 +12,8 @@ If the answer is "it wouldn't", the check is already dead and nobody has noticed
 hypothetical — it is the single most common failure in an agent fleet, because most checks report
 "nothing wrong" and *broken* and *nothing wrong* are the same string.
 
-The runnable half of this chapter is `../scripts/roster-reconcile.sh`.
+The part of this chapter you can actually run is `../scripts/roster-reconcile.sh`. The rest is the
+reasoning that decides what such a script should refuse to call healthy.
 
 ---
 
@@ -54,12 +55,12 @@ Any file a checker writes carries two signals, and only one of them is usually r
 - its **content** — "OK: everything fine"
 - its **age** — when that sentence was last true
 
-Reading only the content is how a watcher hides its own death. The watcher stops running; the file
+Reading only the content is how a checker hides its own death. The checker stops running; the file
 keeps its last cheerful line; the dashboard keeps printing it. Ten days can pass.
 
 Threshold rule: alarm at a few missed cycles, not one. If the check runs every 5 minutes, treat a
 file older than ~20 minutes as red. And phrase the alarm as what you **observed**, not what you
-diagnosed — "data stale 42m" is true whether the watcher died, the disk filled, or the notifier
+diagnosed — "data stale 42m" is true whether the checker died, the disk filled, or the notifier
 failed. Naming the wrong cause sends people to the wrong place.
 
 ## 4. An alarm must prove delivery, not assume it
@@ -96,13 +97,18 @@ Two traps that make green meaningless, both worth checking by hand:
 ## 6. What the numbers must be able to tell you
 
 During an incident there is exactly one question: **is work waiting, or was it lost?** Design the
-output so it answers that without interpretation.
+output so it answers that without interpretation. Each member logs its own state, shown here as a
+worker draining a queue:
 
 ```
 worker finished in 130s (active 1, queued 2)
 DEFERRED cooldown ~9m (2 pending)
 deferred → running <id> (attempt 1, reason=cooldown)
 ```
+
+`DEFERRED` means the request was accepted and parked, not refused; `cooldown` is the reason it is
+parked and roughly how long is left. The third line is the same request starting for real, which is
+what makes the pair readable as "waiting" rather than "lost".
 
 Counts, and the *reason* for each state. Without them, "no errors in the log" covers both a healthy
 idle fleet and one that has been dropping every request for an hour.
