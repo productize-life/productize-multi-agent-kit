@@ -64,7 +64,7 @@ one runnable client. See `docs/README.md` for the full table and reading order.
 | `docs/agent-dispatch.md` | how work reaches a busy agent and how the answer gets matched back to the right request |
 | `docs/working-agreement.md` + `templates/brief.md` | describing work for someone who was not in the conversation: MUST vs HINT (what the doer may be failed for, versus advice it may discard), runnable acceptance, and what must come back |
 | `docs/skill-registry.md` + `scripts/registry-lint.sh` | answering "who covers this?" from a file that outranks self-report — and proving every capability it claims can still be loaded |
-| `docs/fleet-health.md` + `scripts/roster-reconcile.sh` | health you can trust: enumerate from the system, reconcile both directions, and make every check go red once on purpose before trusting its green |
+| `docs/fleet-health.md` + `scripts/roster-reconcile.sh` + `scripts/member-invariant-audit.sh` | health you can trust: enumerate from the system, reconcile both presence *and* per-member properties, and make every check go red once on purpose before trusting its green |
 | `scripts/dispatch-client.sh` | a reference sender: matches the answer to the request by id, honours a queue acknowledgement instead of reposting, and fails loudly rather than accepting the wrong answer |
 
 This is not a framework and there is no runtime to install — the agent side of all of it is short
@@ -140,7 +140,7 @@ failure looked exactly like success from the inside.
 
 `AGENTS.md` is the file everything else points at, and it is the least defended thing here. Two
 chapters ship a checker that re-derives reality from the running system (`registry-lint.sh`,
-`roster-reconcile.sh`); the roster in `AGENTS.md` has no equivalent. It is hand-maintained prose,
+`roster-reconcile.sh`, `member-invariant-audit.sh`); the roster in `AGENTS.md` has no equivalent. It is hand-maintained prose,
 and when it drifts out of step with the agents actually running, nothing in this kit will notice.
 Treat it as a file to re-read on a schedule until someone writes that check.
 

@@ -21,7 +21,7 @@ they say `./scripts/…` while the surrounding prose points at `../scripts/…` 
 | `agent-dispatch.md` | the day a request arrives while an agent is busy — queueing instead of dropping, who may trigger write scope (permission to change files, not merely read them), and why an answer must be matched to its request by id and never by time | **written** |
 | `skill-registry.md` | when nobody can say which agent or skill covers which job — a registry that outranks self-claims, plus `../scripts/registry-lint.sh` to keep it from rotting | **written** |
 | `working-agreement.md` | when work has to be described for someone who was not in the conversation — MUST vs HINT (MUST is binding, HINT is advice you may drop with a reason), runnable acceptance (a command plus the output you expect back, not a description of success), and what must come back. Template: `../templates/brief.md` | **written** |
-| `fleet-health.md` | once the fleet runs unattended — enumerate members from the system, reconcile both directions with `../scripts/roster-reconcile.sh`, and alarms that prove delivery instead of assuming silence | **written** |
+| `fleet-health.md` | once the fleet runs unattended — enumerate members from the system, reconcile both directions with `../scripts/roster-reconcile.sh`, reconcile per-member properties with `../scripts/member-invariant-audit.sh`, and alarms that prove delivery instead of assuming silence | **written** |
 
 ## Why prose and not a framework
 
@@ -38,6 +38,7 @@ these is somewhere the failure is silent:
 |---|---|
 | `../scripts/dispatch-client.sh` | the sender side: matches an answer to its request by id, waits instead of reposting |
 | `../scripts/roster-reconcile.sh` | running members and the roster agree, in both directions. `--self-test` makes it go red |
+| `../scripts/member-invariant-audit.sh` | every running member still carries the properties every member must have — the drift roster-reconcile is blind to. `--self-test` proves it can go red |
 | `../scripts/registry-lint.sh` | every capability the registry claims can actually be loaded here. `--self-test` plants a decoy and catches it |
 
 Two of them need a file you fill in first, and the kit ships both starting points:
